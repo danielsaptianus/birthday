@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useScrollReveal } from '../composables/useScrollReveal'
 import SectionBottomBorder from './SectionBottomBorder.vue'
 
@@ -12,8 +12,11 @@ const props = defineProps({
 
 const emit = defineEmits(['video-play'])
 
-const { targetRef: contentRef, isVisible: contentVisible } = useScrollReveal(0.08)
+const { targetRef: titleRef, isVisible: titleVisible } = useScrollReveal(0.01)
 const videoUnavailable = ref(false)
+const resolvedVideoSrc = computed(() =>
+  props.videoSrc.includes('#') ? props.videoSrc : `${props.videoSrc}#t=0.1`
+)
 
 const handleVideoError = () => {
   videoUnavailable.value = true
@@ -53,14 +56,14 @@ const handleVideoPlay = () => {
 
     <!-- Main Content -->
     <div
-      ref="contentRef"
-      :class="[
-        'relative z-10 flex-1 w-full max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-16 pt-20 sm:pt-24 lg:pt-12 pb-16 sm:pb-24 flex flex-col items-center justify-center reveal-base',
-        contentVisible ? 'reveal-visible' : '',
-      ]"
+      class="relative z-10 flex-1 w-full max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-16 pt-20 sm:pt-24 lg:pt-12 pb-16 sm:pb-24 flex flex-col items-center justify-center"
     >
       <h2
-        class="font-script text-[#f6f1e3] text-[2.8rem] sm:text-[3.8rem] lg:text-[4.4rem] xl:text-[5rem] leading-[1.1] font-normal text-center drop-shadow-[0_4px_12px_rgba(0,0,0,0.22)] select-none mb-3 sm:mb-4"
+        ref="titleRef"
+        :class="[
+          'font-script text-[#f6f1e3] text-[2.8rem] sm:text-[3.8rem] lg:text-[4.4rem] xl:text-[5rem] leading-[1.1] font-normal text-center drop-shadow-[0_4px_12px_rgba(0,0,0,0.22)] select-none mb-3 sm:mb-4 reveal-base',
+          titleVisible ? 'reveal-visible' : '',
+        ]"
       >
         Video
       </h2>
@@ -82,9 +85,10 @@ const handleVideoPlay = () => {
         >
           <video
             v-if="!videoUnavailable"
-            :src="props.videoSrc"
+            :src="resolvedVideoSrc"
             controls
             playsinline
+            webkit-playsinline="true"
             preload="metadata"
             class="w-full h-full object-contain bg-black"
             @error="handleVideoError"

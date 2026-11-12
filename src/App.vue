@@ -17,15 +17,30 @@ const isPlaying = ref(false)
 const hasStartedMusic = ref(false)
 
 const startMusic = async () => {
-  if (!audioRef.value) return
+  const audio = audioRef.value
+  if (!audio) return
   try {
-    if (audioRef.value.paused) {
-      await audioRef.value.play()
-      isPlaying.value = true
+    if (audio.paused) {
+      await audio.play()
+    }
+    isPlaying.value = !audio.paused
+    if (!audio.paused) {
       hasStartedMusic.value = true
     }
   } catch {
-    // Ignore autoplay restriction errors; user can use floating toggle
+    // Retry once after load() in case mobile browser deferred buffering
+    try {
+      if (audio.readyState === 0) {
+        audio.load()
+        await audio.play()
+        isPlaying.value = !audio.paused
+        if (!audio.paused) {
+          hasStartedMusic.value = true
+        }
+      }
+    } catch {
+      // Ignore autoplay restriction errors; user can use floating toggle
+    }
   }
 }
 
@@ -52,7 +67,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <main class="w-full min-h-screen overflow-x-hidden">
+  <main class="w-full min-h-screen overflow-x-clip">
     <!-- Halaman 1: Hero -->
     <PageOneHero @cta-click="startMusic" />
 
@@ -89,9 +104,11 @@ onUnmounted(() => {
     <!-- Background Music -->
     <audio
       ref="audioRef"
-      src="/Tiara Andini - Tulang dan Nadi (Official Visualizer).mp3"
+      src="/audio/tulang-dan-nadi.mp3"
       loop
-      preload="metadata"
+      preload="auto"
+      @play="isPlaying = true; hasStartedMusic = true"
+      @pause="isPlaying = false"
       @ended="isPlaying = false"
     />
 

@@ -7,7 +7,7 @@ const handleCtaClick = () => {
   emit('cta-click')
   const nextSection = document.getElementById('page-02')
   if (nextSection) {
-    nextSection.scrollIntoView({ behavior: 'smooth' })
+    nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
   } else {
     window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })
   }
@@ -63,7 +63,7 @@ const handleCtaClick = () => {
           <button
             type="button"
             @click="handleCtaClick"
-            class="mt-6 sm:mt-8 inline-flex items-center justify-center rounded-full bg-[#f6f1e3] text-[#851011] font-sans font-medium text-sm sm:text-base lg:text-lg tracking-[0.06em] uppercase px-11 sm:px-14 py-3 sm:py-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-105 hover:bg-white active:scale-95 cursor-pointer"
+            class="relative z-30 touch-manipulation min-h-[44px] mt-6 sm:mt-8 inline-flex items-center justify-center rounded-full bg-[#f6f1e3] text-[#851011] font-sans font-medium text-sm sm:text-base lg:text-lg tracking-[0.06em] uppercase px-11 sm:px-14 py-3 sm:py-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-105 hover:bg-white active:scale-95 cursor-pointer"
           >
             MY LOVE
           </button>
