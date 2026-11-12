@@ -6,6 +6,7 @@ import PageThreeMemo from './components/PageThreeMemo.vue'
 import PageFourLevelingUp from './components/PageFourLevelingUp.vue'
 import PageFiveFunMoment from './components/PageFiveFunMoment.vue'
 import PageSixGift from './components/PageSixGift.vue'
+import PageSevenVideo from './components/PageSevenVideo.vue'
 
 const audioRef = ref(null)
 const isPlaying = ref(false)
@@ -21,6 +22,13 @@ const startMusic = async () => {
     }
   } catch {
     // Ignore autoplay restriction errors; user can use floating toggle
+  }
+}
+
+const pauseMusic = () => {
+  if (audioRef.value && !audioRef.value.paused) {
+    audioRef.value.pause()
+    isPlaying.value = false
   }
 }
 
@@ -59,7 +67,10 @@ onUnmounted(() => {
     <!-- Halaman 6: Birthday Gift -->
     <PageSixGift />
 
-    <!-- Halaman 7 s/d 11 akan dilanjutkan di bawah ini secara berurutan -->
+    <!-- Halaman 7: Video -->
+    <PageSevenVideo @video-play="pauseMusic" />
+
+    <!-- Halaman 8 s/d 11 akan dilanjutkan di bawah ini secara berurutan -->
 
     <!-- Background Music -->
     <audio
