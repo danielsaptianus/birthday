@@ -19,35 +19,38 @@ const { targetRef: rightRef, isVisible: rightVisible } = useScrollReveal(0.08)
       class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
     />
 
-    <!-- Left Half Solid Deep Red Book Page -->
+    <!-- Left Half Solid Deep Red Book Page (Desktop) -->
     <div
       aria-hidden="true"
       class="hidden lg:block absolute inset-y-0 left-0 w-1/2 bg-[#8d090a] bg-cover bg-center pointer-events-none select-none"
       style="background-image: url('/page-08/background-sebelah-kiri.png')"
     ></div>
 
-    <!-- Center Spiral Binder Rings (Desktop Split) -->
-    <div
-      aria-hidden="true"
-      class="hidden lg:flex flex-col items-center absolute top-0 bottom-20 left-1/2 -translate-x-1/2 w-10 xl:w-12 z-20 overflow-hidden pointer-events-none select-none"
-    >
-      <img src="/page-08/tengah-buku.png" alt="" class="w-full h-auto shrink-0" />
-      <img src="/page-08/tengah-buku.png" alt="" class="w-full h-auto shrink-0 -mt-1" />
-    </div>
-
     <!-- Top-Left Flowing Ribbon -->
     <img
       src="/page-08/pita-kanan-atas.png"
       alt=""
       aria-hidden="true"
-      class="absolute top-0 left-0 z-20 w-40 sm:w-56 md:w-72 lg:w-88 xl:w-[34vw] max-w-[680px] h-auto pointer-events-none select-none animate-float-slow"
+      class="absolute top-0 left-0 z-30 w-40 sm:w-56 md:w-72 lg:w-88 xl:w-[34vw] max-w-[680px] h-auto pointer-events-none select-none animate-float-slow"
     />
 
     <!-- Main Two-Page Book Spread -->
     <div class="relative z-10 flex-1 w-full grid grid-cols-1 lg:grid-cols-2">
-      <!-- Left Page: "Core Memories" -->
+      <!-- Center Spiral Binder Rings (Desktop Vertical, Full Height to Bottom Border) -->
       <div
-        class="relative flex items-center justify-center px-6 sm:px-10 lg:px-16 pt-28 sm:pt-36 lg:pt-16 pb-12 lg:pb-24 bg-[#8d090a] lg:bg-transparent"
+        aria-hidden="true"
+        class="hidden lg:block absolute inset-y-0 left-1/2 -translate-x-1/2 w-10 xl:w-12 z-20 pointer-events-none select-none"
+        style="
+          background-image: url('/page-08/tengah-buku.png');
+          background-repeat: repeat-y;
+          background-size: 100% auto;
+          background-position: top center;
+        "
+      ></div>
+
+      <!-- Left / Top Page: "Core Memories" -->
+      <div
+        class="relative flex items-center justify-center px-6 sm:px-10 lg:px-16 pt-28 sm:pt-36 lg:pt-16 pb-16 lg:pb-24 bg-[#8d090a] lg:bg-transparent"
       >
         <div
           ref="leftRef"
@@ -68,11 +71,27 @@ const { targetRef: rightRef, isVisible: rightVisible } = useScrollReveal(0.08)
             To every laugh, every late night, and every moment that made us.
           </p>
         </div>
+
+        <!-- Mobile/Tablet Horizontal Spiral Binder Seam (Vertical Flip-Book) -->
+        <div
+          aria-hidden="true"
+          class="lg:hidden absolute bottom-0 inset-x-0 translate-y-1/2 h-9 sm:h-10 z-20 overflow-hidden pointer-events-none select-none"
+        >
+          <div
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 w-9 sm:w-10 h-[1100px]"
+            style="
+              background-image: url('/page-08/tengah-buku.png');
+              background-repeat: repeat-y;
+              background-size: 100% auto;
+              background-position: top center;
+            "
+          ></div>
+        </div>
       </div>
 
-      <!-- Right Page: Scrapbook Photos Collage -->
+      <!-- Right / Bottom Page: Scrapbook Photos Collage -->
       <div
-        class="relative flex items-center justify-center px-6 sm:px-10 lg:px-14 pt-10 lg:pt-16 pb-16 sm:pb-24"
+        class="relative flex items-center justify-center px-6 sm:px-10 lg:px-14 pt-14 lg:pt-16 pb-16 sm:pb-24"
       >
         <div
           ref="rightRef"
