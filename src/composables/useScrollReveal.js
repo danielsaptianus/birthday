@@ -2,9 +2,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 /**
  * Lightweight IntersectionObserver composable for scroll-reveal animations.
- * Works reliably across desktop and tall stacked mobile/responsive viewports.
+ * Triggers reliably across desktop and mobile/responsive viewports and stays visible once revealed.
  */
-export function useScrollReveal(threshold = 0.08) {
+export function useScrollReveal(threshold = 0.01) {
   const targetRef = ref(null)
   const isVisible = ref(false)
   let observer = null
@@ -18,11 +18,14 @@ export function useScrollReveal(threshold = 0.08) {
 
     observer = new IntersectionObserver(
       ([entry]) => {
-        isVisible.value = entry.isIntersecting
+        if (entry.isIntersecting) {
+          isVisible.value = true
+          observer?.disconnect()
+        }
       },
       {
         threshold,
-        rootMargin: '0px 0px -24px 0px',
+        rootMargin: '60px 0px 60px 0px',
       }
     )
     observer.observe(targetRef.value)
