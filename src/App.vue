@@ -8,6 +8,7 @@ import PageFiveFunMoment from './components/PageFiveFunMoment.vue'
 import PageSixGift from './components/PageSixGift.vue'
 import PageSevenVideo from './components/PageSevenVideo.vue'
 import PageEightCoreMemories from './components/PageEightCoreMemories.vue'
+import PageNineCoreMemories from './components/PageNineCoreMemories.vue'
 
 const audioRef = ref(null)
 const isPlaying = ref(false)
@@ -74,7 +75,10 @@ onUnmounted(() => {
     <!-- Halaman 8: Core Memories -->
     <PageEightCoreMemories />
 
-    <!-- Halaman 9 s/d 11 akan dilanjutkan di bawah ini secara berurutan -->
+    <!-- Halaman 9: Core Memories (Collection) -->
+    <PageNineCoreMemories />
+
+    <!-- Halaman 10 s/d 11 akan dilanjutkan di bawah ini secara berurutan -->
 
     <!-- Background Music -->
     <audio
