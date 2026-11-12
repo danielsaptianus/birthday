@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Lavonia Classy';
+  src: url('/fonts/EDLavonia-Regular.ttf') format('truetype'),
+       url('/fonts/EDLavonia-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Lavonia Classy", "Alex Brush", cursive;
+}
+
+.reveal-base {
+  opacity: 0;
+  transform: translateY(38px) scale(0.97);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@layer utilities {
+  .animate-float-slow {
+    animation: floatSlow 5.5s ease-in-out infinite;
+  }
+  .animate-float-gentle {
+    animation: floatGentle 6.5s ease-in-out infinite;
+  }
+  .animate-sway-soft {
+    animation: swaySoft 7s ease-in-out infinite;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1.8deg);
+  }
+}
+
+@keyframes swaySoft {
+  0%, 100% {
+    transform: rotate(-0.8deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(1.2deg) translateY(-5px);
+  }
+}
