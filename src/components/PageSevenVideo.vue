@@ -86,7 +86,7 @@ const handleVideoPlay = () => {
             controls
             playsinline
             preload="metadata"
-            class="w-full h-full object-cover"
+            class="w-full h-full object-contain bg-black"
             @error="handleVideoError"
             @play="handleVideoPlay"
           />
@@ -126,3 +126,4 @@ const handleVideoPlay = () => {
     />
   </section>
 </template>
+
