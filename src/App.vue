@@ -9,6 +9,7 @@ import PageSixGift from './components/PageSixGift.vue'
 import PageSevenVideo from './components/PageSevenVideo.vue'
 import PageEightCoreMemories from './components/PageEightCoreMemories.vue'
 import PageNineCoreMemories from './components/PageNineCoreMemories.vue'
+import PageTenBestWishes from './components/PageTenBestWishes.vue'
 
 const audioRef = ref(null)
 const isPlaying = ref(false)
@@ -78,7 +79,10 @@ onUnmounted(() => {
     <!-- Halaman 9: Core Memories (Collection) -->
     <PageNineCoreMemories />
 
-    <!-- Halaman 10 s/d 11 akan dilanjutkan di bawah ini secara berurutan -->
+    <!-- Halaman 10: Best Wishes -->
+    <PageTenBestWishes />
+
+    <!-- Halaman 11 akan dilanjutkan di bawah ini -->
 
     <!-- Background Music -->
     <audio
