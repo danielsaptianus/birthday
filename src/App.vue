@@ -4,6 +4,8 @@ import PageOneHero from './components/PageOneHero.vue'
 import PageTwoLetter from './components/PageTwoLetter.vue'
 import PageThreeMemo from './components/PageThreeMemo.vue'
 import PageFourLevelingUp from './components/PageFourLevelingUp.vue'
+import PageFiveFunMoment from './components/PageFiveFunMoment.vue'
+import PageSixGift from './components/PageSixGift.vue'
 
 const audioRef = ref(null)
 const isPlaying = ref(false)
@@ -51,7 +53,13 @@ onUnmounted(() => {
     <!-- Halaman 4: Leveling Up -->
     <PageFourLevelingUp />
 
-    <!-- Halaman 5 s/d 11 akan dilanjutkan di bawah ini secara berurutan -->
+    <!-- Halaman 5: Fun Moment -->
+    <PageFiveFunMoment />
+
+    <!-- Halaman 6: Birthday Gift -->
+    <PageSixGift />
+
+    <!-- Halaman 7 s/d 11 akan dilanjutkan di bawah ini secara berurutan -->
 
     <!-- Background Music -->
     <audio
